@@ -1,0 +1,337 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.App {
+  height: 100vh;
+  width: 100%;
+  background-color: #f4f4f4;
+  font-family: sans-serif;
+}
+
+
+
+/*________________
+
+  Navigation
+__________________*/
+
+
+
+
+.navContainer {
+  background-color: #000000;;
+  color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  min-height: 8vh;
+  padding: 15px 50px 15px 50px;
+ }
+
+ 
+
+.navContainer nav {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+nav ul {
+  display: flex;
+  font-size: 20px;
+  font-weight: 400;
+  align-items: center;
+  width: 100%;
+}
+
+.navContainer a {
+  color: white;
+  font-weight: bolder;
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+}
+
+.addNewVehicle {
+  background: white;
+  color: rgb(0, 0, 0);
+  border: transparent;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 5px;
+  min-width: 170px;
+  letter-spacing: 1px;
+  font-size: 1.1em;
+}
+
+.addNewVehicle:hover {
+  background-color: #f0f8ff;
+}
+
+
+.addMake {
+  position: fixed;
+  top: 0;
+  left: 0;
+  flex-direction: row-reverse;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.884);
+  z-index: 33;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  transition: all .5s cubic-bezier(.65,.05,.36,1);
+  transform: translateY(150%);
+  display: flex;
+}
+
+.addMake.show {
+  transition: all .5s cubic-bezier(.65,.05,.36,1);
+  transform: translate(0px);
+}
+
+.addMake input {
+  font-size: 3em;
+  padding: 0px 10px 0px 10px;
+  border: transparent;
+  border-bottom: 1px solid rgb(255, 255, 255);
+  background: transparent;
+  color: white;
+}
+
+.addMake form {
+  display: flex;
+  gap: 10px;
+  flex-direction: row-reverse;
+}
+
+
+.addButton {
+  font-size: 2.9em;
+  background: #ffffff36;
+  color: white;
+  border: transparent;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+
+.closeInput {
+  position: absolute;
+  top: 5%;
+  right: 20%;
+  background-color: transparent;
+  border: none;
+  filter: invert(1);
+  cursor: pointer;
+}
+
+.closeInput img {
+  height: 40px;
+}
+
+
+
+
+
+/*________________
+
+  MainContainer
+__________________*/
+
+
+
+.mainContainer {
+  min-height: 92vh;
+  width: 100%;
+}
+
+
+
+
+
+
+/*________________
+
+  Vehicle Make Div
+__________________*/
+
+
+
+.vehicleMakeDiv {
+  display: flex;
+  min-height: 92vh;
+  flex-direction: column;
+}
+
+
+
+/*____________
+
+  Sidebar
+______________*/
+
+
+
+.sidebar {
+  padding: 30px 3%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filterDiv  {
+  display: flex;
+  gap: 10px;
+}
+
+.filterDiv select,
+.sortDiv select {
+  padding: 7px;
+}
+
+
+.filterDiv button {
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  padding: 7px;
+}
+
+
+
+
+/*____________
+
+  vehicleMakeGrid
+______________*/
+
+
+
+.vehicleMakeGrid {
+  position: relative;
+  min-width: 80%;
+  display: grid;
+  grid-template-columns: repeat(3, 330px);
+  padding: 100px;
+  justify-content: center;
+  gap: 5px;
+}
+
+
+.vehicleMake {
+  text-align: center;
+  font-size: 1.4em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  cursor: pointer;
+  height: 350px;
+  background-color: #f0f8ff69;
+  padding: 30px 10px;
+} 
+
+.vehicleMake:hover,
+.vehicle div:hover {
+  background-color: #333399;
+  color: white;
+  transition: all 0.4s ease-out;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.vehicleMakeImg {
+  height: 100px;
+  width: auto;
+}
+
+.vehicleMakeButtons {
+  display: flex;
+  width: 100%;
+  margin-top: auto;
+  justify-content: center;
+  gap: 10px;
+}
+
+.vehicleMakeButtons > button{
+  border: 1px solid #b8b4b2;
+  padding: 8px 8px;
+  background-color: #ffffff;
+  color: black;
+  border-radius: 3px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.vehicleMakeButtons > button:hover {
+  background-color: rgb(199, 208, 245);
+}
+
+
+/*____________
+
+  pagination
+______________*/
+
+
+.pagination {
+  display: flex;
+  align-self: center;
+  padding: 0px 0px 50px 0px;
+  gap: 5px;
+}
+
+.pagination > button {
+  padding: 10px 15px;
+  background: black;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+/*____________
+
+  vehicle
+______________*/
+
+
+
+
+.vehicle {
+  text-align: center;
+  font-size: 1.4em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  cursor: pointer;
+  background-color: #f0f8ff69;
+  height: 92vh;
+}
+
+.vehicle div {
+  text-align: center;
+  font-size: 1.4em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  cursor: pointer;
+  height: 500px;
+  width: 500px;
+  background-color: #f0f8ff;
+  padding: 50px 50px;
+}

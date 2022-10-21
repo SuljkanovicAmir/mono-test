@@ -10,8 +10,6 @@ function AddNewMake({active, handleClick}) {
 
   const [makeName, setMakeName] = useState([]);
 
- 
-  
 
     const handleAdd = async (e) => {
         e.preventDefault();
@@ -24,7 +22,7 @@ function AddNewMake({active, handleClick}) {
 
   return (
     <div className={active ? 'addMake show' : 'addMake'}>
-        <form onSubmit={handleAdd}>
+        <form onSubmit={e => {handleAdd(e); handleClick(e)}}>
             <button type='submit' className='addButton'>
                 Add
             </button>
@@ -35,7 +33,7 @@ function AddNewMake({active, handleClick}) {
                 onChange={(e) => setMakeName(e.target.value)}
                 />
         </form>
-        <button onClick={e => handleClick()} className='closeInput'>
+        <button onClick={e => handleClick(e)} className='closeInput'>
           <img src={CloseImg} alt='search'/>
         </button>
     </div>

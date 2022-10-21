@@ -7,10 +7,10 @@ function Pagination() {
 
 const pageSet = async (e) => {
     e.preventDefault();
-
     let value = e.target.value;
     VehicleStore.pageNumber = value
     VehicleStore.getVehicles()
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
 }
 
 
@@ -26,7 +26,7 @@ const PageArray = (start, end) => {
   return (
     <div className='pagination'>
         {PageArray(1, VehicleStore.totalPages).map((page) => (
-            <button key={page} value={page}  onClick={e => pageSet(e)}>{page}</button>
+            <button key={page} value={page} className="pageButton"  onClick={e => pageSet(e)}>{page}</button>
         ))}
     </div>
     

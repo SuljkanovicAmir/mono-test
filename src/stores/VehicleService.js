@@ -9,7 +9,6 @@ class VehicleService {
         }
         const request = new Request(webApiUrl + '?' + urlParams, options);
         const response = await fetch(request);
-        console.log(response)
         return response.json();
     }
 

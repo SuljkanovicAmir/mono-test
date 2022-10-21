@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
   entry: ['babel-polyfill', './src/index.js'],
@@ -41,9 +42,10 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
         template: './src/index.html'
-    })
+    }),
+    new FaviconsWebpackPlugin('./src/assets/images/favicon.ico')
   ],
   devServer: {
-    historyApiFallback: true,
+    historyApiFallback: true
   },
 };

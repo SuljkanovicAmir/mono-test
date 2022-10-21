@@ -22,6 +22,7 @@ const VehicleMakeList = () =>  {
 
 
   const handleClick = e => {
+    e.preventDefault()
     setActive(current => !current);
 };
 
@@ -35,13 +36,13 @@ const VehicleMakeList = () =>  {
          <img className='vehicleMakeImg' src={vehicle.imgSrc} alt={vehicle.name} />
          <div className='vehicleMakeButtons'>
           <DeleteMake vehicleId={vehicle.id} />
-          <button onClick={e => {handleClick(); setMakeId(vehicle.id); setEditValue(vehicle.name); setEditImgSrc(vehicle.imgSrc)}}>Edit</button>  
+          <button onClick={e => {handleClick(e); setMakeId(vehicle.id); setEditValue(vehicle.name); setEditImgSrc(vehicle.imgSrc)}}>Edit</button>  
          </div>
         </div>
       </NavLink>
     ))}
-    <EditMake editId={makeId} active={active} editValue={editValue} setEditValue={setEditValue} editImgSrc={editImgSrc} handleClick={handleClick}/>
     </div>
+    <EditMake editId={makeId} active={active} editValue={editValue} setEditValue={setEditValue} editImgSrc={editImgSrc} handleClick={handleClick}/>
     <Pagination/>
     </>
 )}

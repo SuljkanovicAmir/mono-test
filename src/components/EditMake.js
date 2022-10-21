@@ -19,7 +19,7 @@ function EditMake({ editId, active, editValue, setEditValue, handleClick, editIm
 
   return (
     <div className={active ? 'addMake show' : 'addMake'}>
-    <form onSubmit={(e) => {handleEdit(e); handleClick()}}>
+    <form onSubmit={(e) => {handleEdit(e); handleClick(e)}}>
             <button type='submit' className='addButton'>
                 Confirm
             </button>
@@ -30,7 +30,7 @@ function EditMake({ editId, active, editValue, setEditValue, handleClick, editIm
                 onChange={(e) => setEditValue(e.target.value)}
                 />
         </form>
-        <button onClick={e => handleClick()} className='closeInput'>
+        <button onClick={e => handleClick(e)} className='closeInput'>
           <img src={CloseImg} alt='search'/>
         </button>
     </div>

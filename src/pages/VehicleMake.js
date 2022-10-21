@@ -4,11 +4,11 @@ import { useParams } from 'react-router-dom'
 import VehicleStore from '../stores/VehicleStore';
 
 function VehicleMake() {
+  
     const { VehicleId } = useParams();
     const { vehicleData } = VehicleStore;
     const vehicle = vehicleData.filter(vehicle => vehicle.id === VehicleId)
    
-    console.log(vehicle)
   return (
     <>
         {vehicle.map((vehicle, index) => (

@@ -6,8 +6,9 @@
   list-style-type: none;
 }
 
-.App {
-  height: 100vh;
+
+#root {
+  min-height: 100%;
   width: 100%;
   background-color: #f4f4f4;
   font-family: sans-serif;
@@ -63,11 +64,10 @@ nav ul {
   border: transparent;
   text-transform: uppercase;
   cursor: pointer;
-  padding: 12px 16px;
+  padding: 5px 8px;
   border-radius: 5px;
-  min-width: 170px;
   letter-spacing: 1px;
-  font-size: 1.1em;
+  font-size: 1em;
 }
 
 .addNewVehicle:hover {
@@ -240,6 +240,7 @@ ______________*/
   height: 350px;
   background-color: #f0f8ff69;
   padding: 30px 10px;
+  color: black;
 } 
 
 .vehicleMake:hover,
@@ -291,13 +292,16 @@ ______________*/
   gap: 5px;
 }
 
-.pagination > button {
+.pageButton {
   padding: 10px 15px;
   background: black;
   color: white;
   border-radius: 5px;
   cursor: pointer;
+  border: transparent;
 }
+
+
 
 
 /*____________
@@ -334,4 +338,122 @@ ______________*/
   width: 500px;
   background-color: #f0f8ff;
   padding: 50px 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 800px) {
+
+  .navContainer {
+    padding: 15px 25px 15px 25px;
+    height: 10%;
+    min-height: unset;
+  }
+
+  .addNewVehicle {
+    font-size: 0.9em;
+  }
+
+  .addMake form {
+    align-items: center;
+    border-bottom: 1px solid #fff;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    width: 80%;
+  }
+
+  .addMake input {
+    font-size: 1.5em;
+    padding: 0px 10px 0px 10px;
+    width: 90%;
+    border: unset;
+  }
+
+  .addButton {
+    font-size: 1.4em;
+    border-radius: 5px;
+  }
+  .closeInput {
+    top: 3%;
+    right: 5%
+  }
+  .closeInput img {
+      height: 30px;
+  }
+
+
+
+
+  .vehicleMake {
+    background-color: #ffffff9e;
+    border-radius: 5px;
+  }
+
+  .vehicleMakeGrid {
+    min-width: 100%;
+    grid-template-columns: repeat(auto-fit, 300px);
+    padding: 30px 10px;
+    gap: 15px;
+  }
+
+
+
+  .mainContainer {
+    min-height: 100%;
+  }
+
+.filterDiv select,
+.sortDiv select {
+  padding: 3px;
+}
+
+.filterDiv {
+  gap: 5px;
+}
+.filterDiv button {
+  padding: 3px;
+}
+
+
+
+  .vehicle {
+    height: 91vh;
+    min-height: 100%;
+  }
+
+  .vehicle div {
+    font-size: 1.4em;
+    height: 400px;
+    width: 300px;
+    color: white;
+    background-color: #333399;
+    border-radius: 10px;
+}
+}
+
+@media screen and (min-width: 801px) and (max-width: 1280px) {
+  .vehicleMakeGrid {
+      grid-template-columns: repeat(auto-fit, 310px);
+      padding: 70px 30px;
+      justify-content: center;
+  }
+  .vehicle div {
+    background-color: #333399;
+    border-radius: 10px;
+}
+.vehicleMake {
+  background-color: #ffffff9e;
+  border-radius: 5px;
+}
+
 }

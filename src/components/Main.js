@@ -8,14 +8,15 @@ import VehicleStore from '../stores/VehicleStore';
 
 
 function Main() {  
+  
   useEffect(() => {
     VehicleStore.getVehicles();    
   },[])
 
   return (
     <>
-    <Nav/>
-    <MainContainer />
+      <Nav/>
+      <MainContainer />
     </>
   )
 }

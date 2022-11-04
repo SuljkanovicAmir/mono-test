@@ -4,15 +4,29 @@
   padding: 0;
   text-decoration: none;
   list-style-type: none;
+  font-family: 'Montserrat', sans-serif;
 }
 
 
 #root {
   min-height: 100%;
   width: 100%;
-  background-color: #f4f4f4;
+  background-color: #ffffff;
   font-family: sans-serif;
 }
+
+::-webkit-scrollbar-thumb {
+  background: #000000;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+
+
 
 
 
@@ -23,10 +37,7 @@ __________________*/
 
 
 
-
 .navContainer {
-  background-color: #000000;;
-  color: rgb(255, 255, 255);
   display: flex;
   align-items: center;
   min-height: 8vh;
@@ -49,33 +60,67 @@ nav ul {
   width: 100%;
 }
 
-.navContainer a {
-  color: white;
-  font-weight: bolder;
-  font-size: 1em;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-
-}
-
-.addNewVehicle {
-  background: white;
+.tab {
   color: rgb(0, 0, 0);
-  border: transparent;
-  text-transform: uppercase;
-  cursor: pointer;
-  padding: 5px 8px;
-  border-radius: 5px;
+  font-weight: bolder;
+  font-size: 2em;
   letter-spacing: 1px;
+  margin: 0px auto 0px 0px;
+}
+
+.nav-li {
+  cursor: pointer;
+  padding: 4px 10px;
+  letter-spacing: 1px;
+  font-size: 0.8em;
+  font-weight: 800;
+  position: relative;
+  color: black;
+}
+
+
+.navContainer img {
+  height: 30px;
+}
+
+.navContainer li:hover {
+  color: #333399da;
+}
+
+.home {
+  margin-left: auto;
+}
+
+.burger {
+  display: none;
+  position: absolute;
+  right: 3%;
+}
+
+.burger img {
+  height: 50px;
+}
+
+.add-cars {
+  margin-top: 10px;
+  position: absolute;
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   font-size: 1em;
+  visibility: hidden;
+  transition: all .3s ease-in-out;
 }
 
-.addNewVehicle:hover {
-  background-color: #f0f8ff;
+.add-cars.show {
+  visibility: visible;
+  transition: all .3s ease-in-out;
 }
 
 
-.addMake {
+.addMake,
+.add-model {
   position: fixed;
   top: 0;
   left: 0;
@@ -92,12 +137,18 @@ nav ul {
   display: flex;
 }
 
-.addMake.show {
+.addMake.show,
+.add-model.show {
   transition: all .5s cubic-bezier(.65,.05,.36,1);
   transform: translate(0px);
 }
 
-.addMake input {
+.add-model select {
+  padding: 10px 20px;
+}
+
+.addMake input,
+.add-model input {
   font-size: 3em;
   padding: 0px 10px 0px 10px;
   border: transparent;
@@ -112,6 +163,13 @@ nav ul {
   flex-direction: row-reverse;
 }
 
+.add-model form {
+  display: flex;
+  gap: 30px;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}
 
 .addButton {
   font-size: 2.9em;
@@ -123,7 +181,6 @@ nav ul {
   padding: 5px 10px;
   border-radius: 5px;
 }
-
 
 .closeInput {
   position: absolute;
@@ -150,28 +207,11 @@ __________________*/
 
 
 
-.mainContainer {
+.main-container {
   min-height: 92vh;
   width: 100%;
 }
 
-
-
-
-
-
-/*________________
-
-  Vehicle Make Div
-__________________*/
-
-
-
-.vehicleMakeDiv {
-  display: flex;
-  min-height: 92vh;
-  flex-direction: column;
-}
 
 
 
@@ -183,28 +223,149 @@ ______________*/
 
 
 .sidebar {
-  padding: 30px 3%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  grid-area: 1 / 1 / 6 / 2;
+  background-color: #f2f5f8;
+  margin-top: 50px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 100vh;
 }
 
-.filterDiv  {
+.sidebar > h3 {
+  background: white;
+  padding: 5px 70px 20px 25px;
+  line-height: .88;
+}
+
+.filter-div  {
   display: flex;
+  gap: 10px;
+  padding: 10px;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.filter-model {
+  margin-top: 20px;
+}
+
+.filter-model-wrapper {
+  width: 100%;
+  border: 1px solid gray;
+  position: relative;
+  border-radius: 5px;
+  padding: 30px;
+}
+
+.filter-model-wrapper p {
+  position: absolute;
+  top: -10px;
+  left: 17px;
+  background-color: #f2f5f8;
+  padding: 0px 10px;
+}
+
+
+.filter-checkbox {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
 }
 
-.filterDiv select,
-.sortDiv select {
-  padding: 7px;
+.filter-model-select {
+  margin-bottom: 14px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 5px;
+  align-items: center;
+}
+
+.filter-model-select input {
+  cursor: pointer;
+}
+
+input[type='range'] {
+  width: 100%;
 }
 
 
-.filterDiv button {
+.filter-div button,
+.confirm-filters button {
   background-color: #000;
   color: #fff;
   cursor: pointer;
-  padding: 7px;
+  padding: 20px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.confirm-filters {
+  display: none;
+}
+
+.confirm-filters button {
+  background-color:  #43B14B;
+  margin-top: unset;
+  margin-bottom: 20px;
+}
+
+.selectWrapper {
+  width: 100%;
+  border: 1px solid gray;
+  position: relative;
+  border-radius: 5px;
+  transition: all .5s cubic-bezier(.65,.05,.36,1);
+}
+
+.checkboxWrapper {
+  padding: 20px;
+}
+
+.selectWrapper p {
+  position: absolute;
+  top: -10px;
+  left: 17px;
+  background-color: #f2f5f8;
+  padding: 0px 10px;
+}
+
+.selectOptions {
+  padding: 10px 0 0;
+  display: none;
+  transition: all .5s cubic-bezier(.65,.05,.36,1);
+}
+
+.selectOptions.active {
+  display: block;
+  transition: all .5s cubic-bezier(.65,.05,.36,1);
+}
+
+.selected {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  
+  cursor: pointer;
+}
+
+.select {
+  padding: 8px 0px 8px 8px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.selected-img {
+  height: 25px;
+  transition: all .5s cubic-bezier(.65,.05,.36,1);
+}
+
+.selected-img.active {
+  height: 25px;
+  transform: rotate(180deg);
+  transition: all .5s cubic-bezier(.65,.05,.36,1);
 }
 
 
@@ -212,59 +373,73 @@ ______________*/
 
 /*____________
 
-  vehicleMakeGrid
+  VEHICLE MODEL PAGE
 ______________*/
 
 
-
-.vehicleMakeGrid {
-  position: relative;
-  min-width: 80%;
+.vehicle-model-div {
   display: grid;
-  grid-template-columns: repeat(3, 330px);
-  padding: 100px;
-  justify-content: center;
-  gap: 5px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  padding: 10px;
+  min-height: 100vh;
 }
 
 
-.vehicleMake {
+.vehicle-model-div .vehicle-make-list {
+  grid-area: 1 / 2 / 2 / 6;
+  position: relative;
+  width: 95%;
+  padding: 15px;
+  justify-content: flex-start;
+  gap: 10px;
+  display: flex;
+  overflow: auto;
+  margin: 40px auto;
+}
+
+
+.vehicle-model-div .vehicleMake {
   text-align: center;
-  font-size: 1.4em;
+  font-size: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 40px;
   cursor: pointer;
-  height: 350px;
-  background-color: #f0f8ff69;
-  padding: 30px 10px;
+  height: 80px;
+  background-color: white;
   color: black;
-} 
+  border: 1px solid #bcbcbc;
+  border-radius: 8px;
+  padding: 46px 47px;
+}
 
-.vehicleMake:hover,
-.vehicle div:hover {
-  background-color: #333399;
+.vehicle-model-div .vehicleMake:hover,
+.vehicle-model-div .vehicle div:hover,
+.vehicle-model-div .vehicle-model-card:hover {
+  background-color: #333399b4;
   color: white;
   transition: all 0.4s ease-out;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+ 
 }
 
-.vehicleMakeImg {
-  height: 100px;
-  width: auto;
+.vehicle-model-div .vehicleMakeImg {
+  height: auto;
+  width: 50px;
 }
 
-.vehicleMakeButtons {
+.vehicle-model-div .vehicleMakeButtons {
   display: flex;
   width: 100%;
   margin-top: auto;
   justify-content: center;
   gap: 10px;
+  display: none;
 }
 
-.vehicleMakeButtons > button{
+.vehicle-model-div .vehicleMakeButtons > button{
   border: 1px solid #b8b4b2;
   padding: 8px 8px;
   background-color: #ffffff;
@@ -274,9 +449,117 @@ ______________*/
   text-transform: uppercase;
 }
 
-.vehicleMakeButtons > button:hover {
+.vehicle-model-div .vehicleMakeButtons > button:hover {
   background-color: rgb(199, 208, 245);
 }
+
+.vehicle-model-div .vehicle-make-description {
+  display: none;
+}
+
+.vehicle-model-list {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 330px);
+  padding: 60px;
+  justify-content: center;
+  gap: 30px;
+  grid-area: 2 / 2 / 6 / 6;
+  margin: 20px 0px;
+  transition: all .5s cubic-bezier(.65,.05,.36,1);
+}
+
+.vehicle-model-card {
+  text-align: center;
+  font-size: 1.4em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  height: 350px;
+  padding: 20px 10px;
+  color: black;
+  box-shadow: 0 0 2px rgb(0 0 0 / 20%);
+}
+
+.vehicle-model-img-div {
+  height: 70%;
+  width: 100%;
+  border-bottom: 1px solid black;
+  display: flex;
+}
+
+.vehicle-model-img-div a {
+  margin: auto;
+}
+
+
+.vehicle-model-img {
+  width: 250px;
+  height: auto;
+  margin: auto;
+  filter: drop-shadow(0px 4px 0px #00000038);
+}
+
+.vehicle-model-description {
+  display: flex;
+  width: 100%;
+  height: 30%;
+  padding: 10px;
+}
+
+.vehicle-model-buttons {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.vehicle-model-buttons button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.vehicle-model-buttons img {
+  height: 25px;
+  width: 25px;
+}
+
+
+.total-number {
+  position: absolute;
+  border-top: 1px solid  rgb(0, 0, 0, 0.5);
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+}
+
+.total-number p {
+  display: inline-block;
+  transform: translateY(-12px);
+  background: white;
+  padding: 0px 25px;
+  text-transform: uppercase;
+}
+
+.filter-button {
+  display: none;
+  margin: 35px auto;
+}
+
+
+.clear-all {
+  display: none;
+}
+
+
+
+
+
 
 
 /*____________
@@ -288,18 +571,33 @@ ______________*/
 .pagination {
   display: flex;
   align-self: center;
-  padding: 0px 0px 50px 0px;
-  gap: 5px;
+  justify-self: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  z-index: 0;
+}
+
+
+.pagination :first-child {
+  border-radius: 10px 0px 0px 10px;
+}
+
+.pagination :last-child {
+  border-radius: 0px 10px 10px 0px;
 }
 
 .pageButton {
   padding: 10px 15px;
   background: black;
   color: white;
-  border-radius: 5px;
   cursor: pointer;
   border: transparent;
 }
+
+
+
+
 
 
 
@@ -337,8 +635,92 @@ ______________*/
   height: 500px;
   width: 500px;
   background-color: #f0f8ff;
-  padding: 50px 50px;
+  padding: 50px 30px;
 }
+
+
+
+
+
+
+
+
+
+/*__________________
+
+
+  VEHICLE MAKE PAGE
+
+____________________*/
+
+
+
+.vehicle-make-div {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 250px);
+  padding: 60px;
+  justify-content: center;
+  gap: 30px;
+  margin: 20px 0px;
+  transition: all .5s cubic-bezier(.65,.05,.36,1);
+}
+
+.vehicle-make-div .vehicleMakeImg {
+  height: 80px;
+  width: auto;
+  margin: auto;
+}
+
+.vehicle-make-div .vehicleMake{
+  text-align: center;
+  font-size: 1.4em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  height: 350px;
+  padding: 20px 10px;
+  color: black;
+  box-shadow: 0 0 2px rgb(0 0 0 / 20%);
+}
+
+
+.vehicle-make-div .vehicle-make-description {
+  display: flex;
+  width: 100%;
+  height: 30%;
+  padding: 10px;
+}
+
+.vehicle-make-div .vehicle-make-img-div {
+  height: 70%;
+  width: 100%;
+  border-bottom: 1px solid black;
+  display: flex;
+ 
+}
+
+.vehicle-make-buttons {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.vehicle-make-buttons button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.vehicle-make-buttons img {
+  height: 25px;
+  width: 25px;
+}
+
 
 
 
@@ -353,23 +735,80 @@ ______________*/
 
 @media screen and (max-width: 800px) {
 
+  .main-container {
+    min-height: 100%;
+  }
+  /*________________
+
+        NAV
+  __________________*/
+
+  .ul-nav {
+    display: flex;
+    width: 100%;
+    min-width: 100%;
+    position: fixed;
+    min-height: 100vh;
+    height: unset;
+    transform: translateX(120%);
+    position: fixed;
+    transition: .8s ease-in-out;
+    z-index: 3;
+    font-size: 2em;
+    top: 0;
+    right: 0;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding-bottom: 30px;
+  }
+
+  .ul-nav.show {
+    height: 100vh;
+    min-height: 100vh;
+    z-index: 3;
+    overflow-x: auto;
+    background: #d0ccc3;
+    transform: translateX(0);
+    transition: .8s ease-in-out;
+  }
+
+  .cart {
+    display: none;
+  }
+
+  .home {
+    margin-left: unset;
+  }
+
+  .add-cars  {
+    width: 160px;
+  }
+
+  .add-cars li {
+    color: rgba(0, 0, 0, 0.788);
+  }
+
   .navContainer {
-    padding: 15px 25px 15px 25px;
+    padding: 20px 25px 15px 25px;
     height: 10%;
     min-height: unset;
   }
 
-  .addNewVehicle {
-    font-size: 0.9em;
+  .burger {
+    display: block;
   }
 
-  .addMake form {
+   
+
+  .addMake form{
     align-items: center;
     border-bottom: 1px solid #fff;
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
     width: 80%;
+    
   }
 
   .addMake input {
@@ -379,10 +818,25 @@ ______________*/
     border: unset;
   }
 
-  .addButton {
-    font-size: 1.4em;
-    border-radius: 5px;
+  .add-model input {
+    font-size: 1.2em;
   }
+
+
+  .add-model form {
+    padding-bottom: 100px;
+  }
+
+  .addButton {
+    font-size: 1.5em;
+    border-radius: 5px;
+    padding: 5px 5px;
+  }
+
+  .add-model .addButton {
+   width: 100%;
+  }
+
   .closeInput {
     top: 3%;
     right: 5%
@@ -391,39 +845,122 @@ ______________*/
       height: 30px;
   }
 
+  /*________________
 
+      VEHICLE MODEL 
+  __________________*/
+ 
 
-
-  .vehicleMake {
-    background-color: #ffffff9e;
-    border-radius: 5px;
+  .filter-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  .vehicleMakeGrid {
+  .filter-button button {
+    padding: 16px 60px;
+    background-color: #0133ff;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .vehicle-model-div {
+    display: flex;
+    min-height: 92vh;
+    flex-direction: column;
+  }
+
+  .vehicle-model-div .vehicleMake {
+    background-color: #ffffff9e;
+    border-radius: 5px;
+    padding: 38px 44px;
+  }
+
+  .vehicle-model-list {
     min-width: 100%;
     grid-template-columns: repeat(auto-fit, 300px);
-    padding: 30px 10px;
+    padding: 60px 10px;
     gap: 15px;
   }
 
-
-
-  .mainContainer {
-    min-height: 100%;
+  .vehicle-model-div .vehicle-make-list {
+    margin: 40px auto 0px auto;
   }
 
-.filterDiv select,
-.sortDiv select {
-  padding: 3px;
-}
+  .pagination {
+    left: unset;
+  }
 
-.filterDiv {
-  gap: 5px;
-}
-.filterDiv button {
-  padding: 3px;
-}
 
+  .sidebar {
+    min-height: 100vh;
+    width: 100%;
+    z-index: 3;
+    transform: translateY(-200%);
+    transition: 0.8s ease-in-out;
+    position: fixed;
+    padding: 50px 0px;
+    margin-top: unset;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: #f2f5f800;
+    overflow-x: auto;
+  }
+
+  .sidebar.show {
+    left: 0;
+    top: 0;
+    z-index: 3;
+    transform: translateY(0%);
+    transition: 0.8s ease-in-out;
+    background-color: #f2f5f8;
+  }
+
+  .sidebar .closeInput img {
+    filter: invert(1);
+  }
+
+  .sidebar > h3 {
+    padding: 25px 70px 25px 20px;
+  }
+
+  .filter-div button,
+  .confirm-filters button {
+    padding: 20px;
+  }
+
+  .confirm-filters {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+  }
+
+
+  .clear-all {
+    display: flex;
+    position: absolute;
+    left: 5%;
+    top: 20px;
+  }
+  
+  .clear-all button {
+    border: none;
+    border-bottom: 1px solid;
+    color: black;
+    margin-bottom: 10px;
+    background-color: transparent;
+  }
+
+  /*________________
+
+      VEHICLE INFO  
+  __________________*/
 
 
   .vehicle {
@@ -438,22 +975,18 @@ ______________*/
     color: white;
     background-color: #333399;
     border-radius: 10px;
-}
+  }
+
 }
 
-@media screen and (min-width: 801px) and (max-width: 1280px) {
-  .vehicleMakeGrid {
+
+
+
+@media screen and (min-width: 801px) and (max-width: 1440px) {
+  .vehicle-model-list {
       grid-template-columns: repeat(auto-fit, 310px);
       padding: 70px 30px;
       justify-content: center;
   }
-  .vehicle div {
-    background-color: #333399;
-    border-radius: 10px;
-}
-.vehicleMake {
-  background-color: #ffffff9e;
-  border-radius: 5px;
-}
-
+ 
 }

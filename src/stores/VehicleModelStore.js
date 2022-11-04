@@ -1,20 +1,20 @@
 import { observable, runInAction, makeAutoObservable} from "mobx";
-import VehicleService from "./VehicleService";
+import VehicleModelService from "./VehicleModelService";
 
 
-class VehicleStore {
+class VehicleModelStore {
 
     constructor(){
-        this.vehicleService = new VehicleService()
+        this.vehicleModelService = new VehicleModelService()
         makeAutoObservable(this, {
-            vehicleData: observable,
+            vehicleModelData: observable,
             status: observable,
             searchQuery: observable,
             sortBy: observable,
             pageNumber: observable
         })
     }
-    vehicleData = []
+    vehicleModelData = []
     status = "initial";
     searchQuery = null;
     pageNumber = 1
@@ -22,10 +22,10 @@ class VehicleStore {
     sortBy = "name|asc"
 
 
-    getVehicles = async () => {
+    getVehicleModels = async () => {
         try {
             let params = {
-                rpp: 17
+                rpp: 9
             }
             if (this.sortBy) {
                 params.sort = this.sortBy
@@ -39,9 +39,10 @@ class VehicleStore {
            
 
             const urlParams = new URLSearchParams(Object.entries(params));
-            const data = await this.vehicleService.get(urlParams)
+            const data = await this.vehicleModelService.get(urlParams)
+            console.log(data)
         runInAction(() => {
-            this.vehicleData = data.item;
+            this.vehicleModelData = data.item;
             this.totalRecords = data.totalRecords
         })
         } catch (error) {
@@ -54,33 +55,34 @@ class VehicleStore {
     };
 
 
-    addVehicle = async (model) => {
+    addVehicleModel = async (model) => {
 
         try {
-            const response = await this.vehicleService.post(model);
-            const data = this.getVehicles()
+            const response = await this.vehicleModelService.post(model);
+            const data = this.getVehicleModels()
             console.log(data)
             if (response === 201) {
                 runInAction(() => {
-                    this.vehicleData = this.vehicleData.map(item => [...item, data.item])
+                    this.vehicleModelData = this.vehicleModelData.map(item => [...item, data.item])
                     this.status = 'success'
                 })
             }
         }  catch (error) {
             runInAction(() => {
                 this.status = "error";
+                console.log(error)
             });
         }
     };
 
-    updateVehicle = async (params, vehicle) => {
+    updateVehicleModel = async (params, vehicle) => {
         try {
-            const response = await this.vehicleService.put(params, vehicle)
-            const data = this.getVehicles()
+            const response = await this.vehicleModelService.put(params, vehicle)
+            const data = this.getVehicleModels()
             if (response === 201) {
                 runInAction(() => {
                     this.status = 'success'
-                    this.vehicleData = this.vehicleDatamap(item => item.id === params ? data : item)
+                    this.vehicleModelData = this.vehicleModelDatamap(item => item.id === params ? data : item)
                 })
             }
         }  catch (error) {
@@ -90,12 +92,12 @@ class VehicleStore {
         }
     };
 
-    deleteVehicle = async (id) => {
+    deleteVehicleModel = async (id) => {
         try {
-            const response = await this.vehicleService.delete(id);
+            const response = await this.vehicleModelService.delete(id);
             if (response.status === 204) {
                 runInAction(() => {
-                    this.vehicleData = this.vehicleData.filter(item => item.id !== id)
+                    this.vehicleModelData = this.vehicleModelData.filter(item => item.id !== id)
                     this.status = "success";
                 })
             } 
@@ -107,7 +109,7 @@ class VehicleStore {
     }
 
     get totalPages() {
-       return Math.ceil(this.totalRecords / 16);
+       return Math.ceil(this.totalRecords / 9);
     }
 
   
@@ -117,4 +119,4 @@ class VehicleStore {
 
 
 
-export default new VehicleStore()
+export default new VehicleModelStore()

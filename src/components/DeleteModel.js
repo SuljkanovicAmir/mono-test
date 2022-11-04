@@ -1,13 +1,13 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
-import VehicleStore from '../stores/VehicleStore';
+import VehicleModelStore from '../stores/VehicleModelStore'
 import DeleteImg from '../assets/images/trash.svg'
 
-function DeleteMake({vehicleId}) {
+function DeleteModel({vehicleId}) {
 
     const handleDelete = async (e) => {
         e.preventDefault();
-        VehicleStore.deleteVehicle(vehicleId, {})
+        VehicleModelStore.deleteVehicleModel(vehicleId, {})
     }
 
   return (
@@ -15,4 +15,4 @@ function DeleteMake({vehicleId}) {
   )
 }
 
-export default inject("VehicleStore")(observer(DeleteMake)); 
+export default inject("VehicleModelStore")(observer(DeleteModel)); 

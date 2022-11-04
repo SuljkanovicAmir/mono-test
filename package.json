@@ -20,7 +20,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "webpack-dev-server --mode development --hot",
+    "start": "webpack-dev-server --mode development --hot --port 5000",
     "build": "webpack --mode development",
     "predeploy": "npm run build",
     "test": "react-scripts test",
@@ -55,6 +55,7 @@
     "css-loader": "^6.7.1",
     "favicons": "^7.0.1",
     "favicons-webpack-plugin": "^6.0.0-alpha.1",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "source-map-loader": "^4.0.1",
     "svg-url-loader": "^8.0.0",

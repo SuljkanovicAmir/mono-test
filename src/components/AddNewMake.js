@@ -1,6 +1,6 @@
 import React, {useState}from 'react'
 import { inject, observer } from 'mobx-react'
-import VehicleStore from '../stores/VehicleStore';
+import VehicleStore from '../stores/VehicleStore'
 import CloseImg from '../assets/images/close.svg'
 
 
@@ -10,7 +10,6 @@ function AddNewMake({active, handleClick}) {
 
   const [makeName, setMakeName] = useState([]);
 
-
     const handleAdd = async (e) => {
         e.preventDefault();
         VehicleStore.addVehicle({
@@ -18,7 +17,6 @@ function AddNewMake({active, handleClick}) {
        })
        e.target.reset();
     }
-
 
   return (
     <div className={active ? 'addMake show' : 'addMake'}>
@@ -39,5 +37,6 @@ function AddNewMake({active, handleClick}) {
     </div>
   )
 }
+
 
 export default inject("VehicleStore")(observer(AddNewMake)); 

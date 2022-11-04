@@ -1,6 +1,6 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
-import VehicleStore from '../stores/VehicleStore';
+import VehicleModelStore from '../stores/VehicleModelStore'
 
 
 function Pagination() {
@@ -8,9 +8,9 @@ function Pagination() {
 const pageSet = async (e) => {
     e.preventDefault();
     let value = e.target.value;
-    VehicleStore.pageNumber = value
-    VehicleStore.getVehicles()
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    VehicleModelStore.pageNumber = value
+    VehicleModelStore.getVehicleModels()
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'})
 }
 
 
@@ -25,7 +25,7 @@ const PageArray = (start, end) => {
 
   return (
     <div className='pagination'>
-        {PageArray(1, VehicleStore.totalPages).map((page) => (
+        {PageArray(1, VehicleModelStore.totalPages).map((page) => (
             <button key={page} value={page} className="pageButton"  onClick={e => pageSet(e)}>{page}</button>
         ))}
     </div>

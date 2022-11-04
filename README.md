@@ -7,6 +7,8 @@ Assignment for job application for Mono
 ## Features
 
 - List of car brands (VehicleMake)
+- List of car models (VehicleModel)
+- VehicleModel info page
 - Sort, filter and pagination
 - Create, read, update, and delete (CRUD)
 - React router for routing
@@ -27,3 +29,6 @@ Clone repository
 
 $ npm install
 $ npm start
+
+
+

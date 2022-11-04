@@ -3,12 +3,13 @@ import { Provider } from 'mobx-react';
 
 import './assets/App.css';
 import VehicleStore from './stores/VehicleStore';
+import VehicleModelStore from './stores/VehicleModelStore';
 import Main from './components/Main';
 
 function App() {
 
   return (
-    <Provider VehicleStore={VehicleStore}>
+    <Provider VehicleStore={VehicleStore} VehicleModelStore={VehicleModelStore}>
       <Router>
         <Main />
       </Router>
